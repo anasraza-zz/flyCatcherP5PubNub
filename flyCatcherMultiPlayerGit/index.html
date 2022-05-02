@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.27.4.min.js"></script>
+
+
+  <title>Fly Catcher - Multi Player</title>
+
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/styleForDesktop.css" />
+</head>
+
+<body>
+
+
+  <div class="container">
+    <h1 class="heading">Annoying Bee</h1>
+    <img src="assets/img/homepage-bee.gif" class="home-logo-img">
+
+    <div class="player-info">
+
+      <label for="playername" class="playername-label">Enter Player Name</label>
+      <input type="text" id="playername">
+      <button class="btn btn-primary btn-sm btn-block" onclick="playgame()">Start Game</button>
+      <span id="game-error"></span>
+    </div>
+  </div>
+
+
+  <script>
+    let dataServer;
+    let pubKey = "pub-c-a89113e6-3093-4b43-8f4a-e1dce36bb107";
+    let subKey = "sub-c-7f74413c-3b65-11ec-8182-fea14ba1eb2b";
+    let channelName = "fireflySocial";
+    let hostPresence = 0;
+
+    // establish communication with PubNub
+    dataServer = new PubNub({
+      publish_key: pubKey,
+      subscribe_key: subKey,
+      ssl: true
+    });
+    // subscribe to the channel and listen to callbacks
+    dataServer.subscribe({ channels: [channelName], withPresence: true, withUUID: true });
+    dataServer.addListener({ presence: readPresence });
+    function readPresence(response) {
+      var action = response.action;
+      var occupancy = response.occupancy;
+      var uuid = response.uuid;
+      if (uuid == 'host') {
+        hostPresence = 1;
+     
+      }
+
+    }
+
+
+    function playgame() {
+      //get the input value from the user
+      var playername = document.getElementById("playername").value;
+
+      //check if the input is empty
+      if (playername == "") {
+        document.getElementById("game-error").innerHTML = "Please Enter Player's Name";
+      }
+
+      //check if host is online
+      else if (hostPresence == 0) {
+        document.getElementById("game-error").innerHTML = "Waiting for host to start the game";
+      }
+
+      // if host is online redirect to the fly net page with Player's Name
+      else if (hostPresence == 1) {
+        window.location.href = "fly-net.html?playername=" + playername;
+      }
+    }
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

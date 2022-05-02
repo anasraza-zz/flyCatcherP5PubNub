@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.27.4.min.js"></script>
+  <title>Game Over</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 class="heading" style="font-size: 3em;">Game Over</h1>
+  
+  
+   <h2 class="heading2" style="margin-top:80px;">Winner</h2>
+   <h2 class="heading3" id="winnerName"></h2>
+   <h2 class="heading2" style="margin-top:30px;">Score</h2>
+   <h2 class="heading3" id="winnerScore"></h2>
+   <br/><br/><br/><br/>
+   <button class="play-btn" onclick="gameStatus()">Play Again</button>
+   <p id="gamestatus"> </p>
+  </div>
+
+
+  
+
+  <script>
+
+    let dataServer;
+    let pubKey = "pub-c-a89113e6-3093-4b43-8f4a-e1dce36bb107";
+    let subKey = "sub-c-7f74413c-3b65-11ec-8182-fea14ba1eb2b";
+    let channelName = "fireflySocial";
+    var action;
+    var uuid;
+
+    dataServer = new PubNub({
+      publish_key: pubKey,
+      subscribe_key: subKey,
+      ssl: true,
+    });
+
+
+
+
+    dataServer.subscribe({ channels: [channelName], withPresence: true, withUUID: true });
+    dataServer.addListener({ presence: readPresence });
+   
+
+    function readPresence(response) {
+      action = response.action;
+      uuid = response.uuid;
+
+    }
+    function gameStatus() {
+
+      if (action !== null) {
+
+        if (action === "join" && uuid === "host") {
+          window.location.href = "/index.html"
+        }
+        else {
+          document.getElementById("gamestatus").innerHTML = "Waiting for host to start game";
+        }
+
+      } else {
+        document.getElementById("gamestatus").innerHTML = "Waiting for host to start game. Error";
+      }
+    }
+
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const winnerName = urlParams.get('winnerName');
+    const winnerScore = urlParams.get('winnerScore');
+
+  document.getElementById("winnerName").innerHTML = winnerName;
+  document.getElementById("winnerScore").innerHTML = winnerScore;
+
+
+
+  </script>
+
+
+</body>
+</html>

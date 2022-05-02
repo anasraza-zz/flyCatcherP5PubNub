@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+  <title>Game Over</title>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/styleForDesktop.css" />
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 class="heading" style="font-size: 4em;">Game Over</h1>
+  
+  
+   <h2 class="heading2" style="margin-top:80px;">Winner</h2>
+   <h2 class="heading3" id="winner"></h2>
+   <h2 class="heading2" style="margin-top:30px;">Score</h2>
+   <h2 class="heading3" id="score"></h2>
+   <br/><br/><br/><br/>
+    <form action="/swarm.html">
+      <button type="submit">Play Again</button>
+  </form>
+
+  </div>
+
+  <script>
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const winner = urlParams.get('winner');
+    const maxScore = urlParams.get('maxScore');
+    
+    document.getElementById("winner").innerHTML = winner;
+    document.getElementById("score").innerHTML = maxScore;
+  </script>
+
+
+</body>
+
+</html>

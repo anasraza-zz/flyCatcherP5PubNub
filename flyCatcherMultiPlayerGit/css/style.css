@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shrikhand&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+
+    background-color: rgb(0, 0, 0) ;
+}
+
+.container {
+    background-color: rgb(0, 0, 0);
+    position: relative;
+    text-align: center;
+
+}
+
+.heading {
+    color: rgb(255, 179, 0);
+    font-size: 2.5em;
+    letter-spacing: 3px;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.heading2 {
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    letter-spacing: 3px;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+}
+
+.heading3 {
+    color: rgb(0, 231, 85);
+    font-size: 1.8em;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+}
+
+.home-logo-img {
+    width: 80vw;
+    margin: 20px auto;
+
+}
+
+.player-info {
+    padding: 0px 40px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.playername-label {
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 20px;
+}
+
+.player-info input {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 234, 182);
+    color: rgb(0, 0, 0);
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px 0px;
+    padding: 5px 10px;
+    word-spacing: 6px;
+
+    letter-spacing: 3px;
+
+}
+
+button {
+    width: 320px;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 179, 0);
+    color: rgb(0, 0, 0);
+    font-size: 1.2em;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+#game-error {
+    color: rgb(255, 0, 0);
+    font-size: 1em;
+    margin: 20px auto;
+    display: block;
+}

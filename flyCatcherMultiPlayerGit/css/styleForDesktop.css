@@ -1,0 +1,17 @@
+
+@media only screen and (min-width: 600px) {
+    .home-logo-img {
+      width: 350px;
+    }
+    .player-info input {
+    
+      display: block;
+      margin: 20px auto;
+
+    }
+    .player-info button{
+     
+      display: block;
+      margin: 20px auto;
+    }
+  }
